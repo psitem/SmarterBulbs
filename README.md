@@ -1,8 +1,7 @@
 # SmarterBulbs
 
-Re-packaging of nsweet68's Canary bulb power outage handler script so that it can be added to the SmartThings IDE without pulling in his whole SmartThingsPublic forked repo.
+A SmartThings SmartApp for resetting the state of smart bulbs after a power loss. Ordinarily smart bulbs will turn themselves on upon power restoration -- a handy feature for allowing light control via switch if your smart hub is offline, but not-so-desirable when your power flickers at 3AM and all of your lights turn on.
 
-https://community.smartthings.com/t/release-smartbulb-power-outage-handler/49650
+With this SmartApp you designate a Canary smart bulb that will ordinarily be powered and turned off, along with the set of smart bulbs whose state should be tracked. When the SmartApp detects the Canary bulb has turned on it will reset the tracked bulbs to their previous state and turn the Canary back off.
 
-https://github.com/nsweet68/SmartThingsPublic/blob/master/smartapps/smartthings/smarter-bulbs.src/smarter-bulbs.groovy
-
+This script was [authored by nsweet on the SmartThings community forums](https://community.smartthings.com/t/release-smartbulb-power-outage-handler/49650). I've re-package the latest version they wrote in a form that is more friendly to using with SmartThing's GitHub integration.
