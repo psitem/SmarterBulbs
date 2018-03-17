@@ -49,7 +49,7 @@ def updated() {
 def initialize() {
     subscribe(slaves, "switch", saveStates)
     subscribe(canary,"switch.on", checkRestore)
-    canary.poll()
+    pollCanary()
     saveStates() 
 	runEvery5Minutes(checkRestore)
     
@@ -61,7 +61,7 @@ def saveStates(evt) {
     	def lightsOff = [:]
     	slaves?.each {
 			if (it.currentSwitch == "off"){
-        	log.debug "${it.id} value ${it.currentSwitch}" 
+        	log.debug "${it.displayName} value ${it.currentSwitch}" 
         	lightsOff[it.id]="off"
         	}
 		}
@@ -71,14 +71,14 @@ def saveStates(evt) {
 
 def checkRestore(evt) {
     log.debug "Checking Restore"  
-    canary.poll() 
+    pollCanary() 
     log.debug "Canary is ${canary.currentSwitch}"
     if ("on" == canary.currentSwitch) { 
     	log.debug "Turning stuff off"
         restoreState()
         canary.off()
         }
-    slaves*.poll()
+    pollSlaves()
     saveStates(evt)
 }
 
@@ -90,3 +90,33 @@ private restoreState() {
                 }
 			}
 		}
+
+private pollCanary() {
+    def hasPoll = canary.hasCommand("poll")
+    if (hasPoll) {
+    	canary.poll()
+        log.debug "Poll canary"
+    }
+    else
+    {
+    	canary.refresh()
+        log.debug "Refresh canary"
+    }
+}
+
+private pollSlaves() {
+
+slaves.each {slave ->
+def hasPoll = slave.hasCommand("poll")
+    if (hasPoll) {
+    	slave.poll()
+        log.debug "Poll ${slave.displayName}"
+    }
+    else
+    {
+    	slave.refresh()
+        log.debug "Refresh ${slave.displayName}"
+    }
+}
+    
+}
