@@ -6,4 +6,4 @@ With this SmartApp you designate a Canary smart bulb that will ordinarily be pow
 
 This script was [authored by nsweet on the SmartThings community forums](https://community.smartthings.com/t/release-smartbulb-power-outage-handler/49650). I've re-package the latest version they wrote in a form that is more friendly to using with SmartThing's GitHub integration.
 
-![Example Configuration Screen](https://github.com/tbyehl/SmarterBulbs/blob/master/smarterbulbs-config-screen.png)
+![Example Configuration Screen](https://raw.githubusercontent.com/tbyehl/SmarterBulbs/master/smarterbulbs-config-screen.png)
