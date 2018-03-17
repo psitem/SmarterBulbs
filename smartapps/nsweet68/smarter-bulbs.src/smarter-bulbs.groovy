@@ -19,7 +19,7 @@
  ************/
 definition(
 	name: "Smarter Bulbs",
-	namespace: "smartthings",
+	namespace: "nsweet68",
 	author: "nick@sweet-stuff.cc",
 	description: "Save the state of a bunch of bulbs and reset when 'Canary' bulb turns on",
 	category: "My Apps",
